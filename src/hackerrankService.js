@@ -22,7 +22,9 @@ const getExercises = async (type = "algorithms", numberOfResults = 100) => {
 
   const listOfChallengesUrl = createHackerrankUrl(type, numberOfResults);
 
-  const listOfChallenges = await axios.get(listOfChallengesUrl);
+  const result = await axios.get(listOfChallengesUrl);
+  const listOfChallenges = result.data.models;
+
   return listOfChallenges;
 };
 

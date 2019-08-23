@@ -21,14 +21,16 @@ You get a list of models back, in which the `slug` can be used to construct the 
 
 ```
 {
-    models: [
-        {
+    data: {
+        models: [
+            {
+                ...
+                slug: "append-and-delete"
+                ...
+            },
             ...
-            slug: "append-and-delete"
-            ...
-        },
-        ...
-    ]
+        ]
+    }
 }
 ```
 
