@@ -7,10 +7,10 @@ const sns = new AWS.SNS({
 const EMAIL_SUBJECT = "Your daily hackerrank challenge!";
 const TOPIC_ARN = process.env.TOPIC_ARN;
 
-const sendEmail = (body, recepients) => {
+const sendEmail = (body, subject) => {
   const params = {
     Message: body,
-    Subject: EMAIL_SUBJECT,
+    Subject: subject || EMAIL_SUBJECT,
     TopicArn: TOPIC_ARN
   };
 
