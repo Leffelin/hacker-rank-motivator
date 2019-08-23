@@ -29,3 +29,14 @@ test("Should be able to get a list of challenges", () => {
     expect(exercises).toBeDefined();
   });
 });
+
+test("Should be able to create a challenge url from an exerciseModel", () => {
+  const exerciseModel = {
+    slug: "some-slug"
+  };
+
+  const challengeUrl = hackerrankService.getChallengeUrl(exerciseModel);
+  expect(challengeUrl).toBe(
+    `https://www.hackerrank.com/challenges/some-slug/problem`
+  );
+});

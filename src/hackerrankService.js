@@ -1,3 +1,4 @@
+const debug = require("debug")("hackerrankService");
 const axios = require("axios");
 
 const HACKERRANK_BASE_URL =
@@ -5,8 +6,14 @@ const HACKERRANK_BASE_URL =
 
 const HACKERRANK_CHALLENGE_TYPES = new Set(["algorithms", "data-structures"]);
 
-const createHackerrankUrl = (type, numberOfResults) =>
-  `${HACKERRANK_BASE_URL}/${type}/challenges?offset=0&limit=${numberOfResults}`;
+const createHackerrankUrl = (type, numberOfResults) => {
+  const url = `${HACKERRANK_BASE_URL}/${type}/challenges?offset=0&limit=${numberOfResults}`;
+
+  debug(
+    `Type: "${type}", numbersOfResults: "${numberOfResults}" - Results in created url: "${url}"`
+  );
+  return url;
+};
 
 const isValidHackerrankChallengeType = type =>
   HACKERRANK_CHALLENGE_TYPES.has(type);
@@ -22,13 +29,17 @@ const getExercises = async (type = "algorithms", numberOfResults = 100) => {
 
   const listOfChallengesUrl = createHackerrankUrl(type, numberOfResults);
 
+  debug(`Getting hold of exercises from: "${listOfChallengesUrl}"`);
   const result = await axios.get(listOfChallengesUrl);
   const listOfChallenges = result.data.models;
 
   return listOfChallenges;
 };
 
-const getChallengeUrl = () => {};
+const getChallengeUrl = exerciseModel => {
+  const slug = exerciseModel.slug;
+  return `https://www.hackerrank.com/challenges/${slug}/problem`;
+};
 
 module.exports = {
   getExercises,
