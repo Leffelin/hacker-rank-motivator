@@ -59,3 +59,11 @@ npm install
 cd serverless
 serverless deploy
 ```
+
+## Testing
+
+This project is using Jest for testing (https://jestjs.io/).
+
+```
+npm run test
+```
