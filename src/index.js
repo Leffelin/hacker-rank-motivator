@@ -38,6 +38,8 @@ Good luck!
 
 /HeadCraft`;
 
+  //   console.log(message);
+
   await emailService.sendEmail(
     message,
     `Your daily hackerrank challenge - ${formattedDate} `
@@ -46,4 +48,6 @@ Good luck!
   debug("Done!");
 };
 
-run();
+module.exports = {
+  run
+};

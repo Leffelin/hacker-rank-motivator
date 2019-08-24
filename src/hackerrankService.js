@@ -18,7 +18,7 @@ const createHackerrankUrl = (type, numberOfResults) => {
 const isValidHackerrankChallengeType = type =>
   HACKERRANK_CHALLENGE_TYPES.has(type);
 
-const getExercises = async (type = "algorithms", numberOfResults = 100) => {
+const getExercises = (type = "algorithms", numberOfResults = 100) => {
   const isValidType = isValidHackerrankChallengeType(type);
 
   if (!isValidType) {
@@ -30,10 +30,16 @@ const getExercises = async (type = "algorithms", numberOfResults = 100) => {
   const listOfChallengesUrl = createHackerrankUrl(type, numberOfResults);
 
   debug(`Getting hold of exercises from: "${listOfChallengesUrl}"`);
-  const result = await axios.get(listOfChallengesUrl);
-  const listOfChallenges = result.data.models;
 
-  return listOfChallenges;
+  return axios
+    .get(listOfChallengesUrl)
+    .then(result => {
+      const listOfChallenges = result.data.models;
+      debug(`Received: "${listOfChallenges}"`);
+
+      return listOfChallenges;
+    })
+    .catch(error => debug(error));
 };
 
 const getChallengeUrl = exerciseModel => {
