@@ -72,7 +72,7 @@ functions:
       - schedule:
           name: schedule-at-07-on-weekdays
           description: "This schedule triggers at 07.00 (Swedish time ) on every weekday. (The specified time is CET)."
-          rate: cron(0 5 ? * MON-FRI *)
+          rate: cron(0 5 ? * * *)
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
