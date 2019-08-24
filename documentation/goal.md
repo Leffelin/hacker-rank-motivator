@@ -34,6 +34,8 @@ Services that can be used:
   Can be triggered by a cron job, and run all of the code necessary to getting hold of and choosing a problem. Can then trigger the email mechanism.
 - SES - Simple email service  
   Can be used to send the email to a set of addresses.
+- SNS - Simple Notification Service  
+  A more crude way of sending unformatted emails.
 - S3 (Extra)  
   Can be used to store state in a simple file. No need for a database at the start.
 - Cloud formation (Extra)  
