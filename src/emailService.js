@@ -3,16 +3,21 @@ const sns = new AWS.SNS({
   apiVersion: "2010-03-31",
   region: process.env.AWS_REGION
 });
+
 const debug = require("debug")("emailService");
+const config = require("./config");
 
-const EMAIL_SUBJECT = "Your daily hackerrank challenge!";
-const TOPIC_ARN = process.env.TOPIC_ARN;
-
+/**
+ * Uses SNS to trigger a topic and send out an email to the subscribers.
+ *
+ * @param {*} body
+ * @param {*} subject
+ */
 const sendEmail = (body, subject) => {
   const params = {
     Message: body,
-    Subject: subject || EMAIL_SUBJECT,
-    TopicArn: TOPIC_ARN
+    Subject: subject || config.email.SUBJECT,
+    TopicArn: config.SNS.TOPIC_ARN
   };
 
   return sns

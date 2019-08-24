@@ -16,6 +16,7 @@ const createHackerrankUrl = (type, numberOfResults) => {
   debug(
     `Type: "${type}", numbersOfResults: "${numberOfResults}" - Results in created url: "${url}"`
   );
+
   return url;
 };
 
@@ -52,8 +53,6 @@ const getExercises = (type = "algorithms", numberOfResults = 100) => {
     .get(listOfChallengesUrl)
     .then(result => {
       const listOfChallenges = result.data.models;
-      //   debug(`Received: "${listOfChallenges}"`);
-
       return listOfChallenges;
     })
     .catch(error => debug(error));
