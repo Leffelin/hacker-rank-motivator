@@ -4,6 +4,8 @@ const hackerrankService = require("./hackerrankService");
 const randomizationService = require("./randomizationService");
 const emailService = require("./emailService");
 
+const NUMBER_OF_CHALLENGES_TO_RETRIEVE = 100;
+
 const calculatePercent = decimal => Math.round(decimal * 10000) / 100;
 
 const run = async () => {
@@ -11,7 +13,13 @@ const run = async () => {
 
   const exerciseModels = await hackerrankService.getExercises(
     "algorithms",
-    100
+    NUMBER_OF_CHALLENGES_TO_RETRIEVE
+  );
+
+  debug(
+    `Asked for ${NUMBER_OF_CHALLENGES_TO_RETRIEVE} challenges. Got ${
+      exerciseModels.length
+    } back.`
   );
 
   const randomExercise = randomizationService.pickRandomExercise(
@@ -38,7 +46,7 @@ Good luck!
 
 /HeadCraft`;
 
-  //   console.log(message);
+  console.log(message);
 
   await emailService.sendEmail(
     message,
