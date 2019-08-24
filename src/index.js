@@ -3,17 +3,26 @@ const debug = require("debug")("index");
 const hackerrankService = require("./hackerrankService");
 const randomizationService = require("./randomizationService");
 const emailService = require("./emailService");
+const config = require("./config");
 
-const NUMBER_OF_CHALLENGES_TO_RETRIEVE = 100;
+/**
+ * Transforms a decimal value to a percentage string.
+ * E.g 0.9854 becomes "98.54%"
+ *
+ * @param {*} decimal
+ */
+const calculatePercentage = decimal => Math.round(decimal * 10000) / 100;
 
-const calculatePercent = decimal => Math.round(decimal * 10000) / 100;
-
+/**
+ * Runs the application logic. Platform independent entrypoint.
+ * Is used by both local execution and lambda execution.
+ */
 const run = async () => {
   debug(`Starting a new run`);
 
   const exerciseModels = await hackerrankService.getExercises(
     "algorithms",
-    NUMBER_OF_CHALLENGES_TO_RETRIEVE
+    config.hackerrank.NUMBER_OF_CHALLENGES_TO_RETRIEVE
   );
 
   debug(
@@ -36,7 +45,7 @@ const run = async () => {
 The name of the challenge is "${randomExercise.name.trim()}" and it is deemed "${
     randomExercise.difficulty_name
   }" to solve.
-In fact.. ${calculatePercent(
+In fact.. ${calculatePercentage(
     randomExercise.success_ratio
   )}% of the users that has tried this challenge, succeeded.
 
