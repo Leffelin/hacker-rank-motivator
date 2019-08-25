@@ -26,9 +26,9 @@ const run = async () => {
   );
 
   debug(
-    `Asked for ${NUMBER_OF_CHALLENGES_TO_RETRIEVE} challenges. Got ${
-      exerciseModels.length
-    } back.`
+    `Asked for ${
+      config.hackerrank.NUMBER_OF_CHALLENGES_TO_RETRIEVE
+    } challenges. Got ${exerciseModels.length} back.`
   );
 
   const randomExercise = randomizationService.pickRandomExercise(
