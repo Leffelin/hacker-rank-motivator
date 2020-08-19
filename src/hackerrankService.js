@@ -2,6 +2,9 @@ const debug = require("debug")("hackerrankService");
 const axios = require("axios");
 const config = require("./config");
 
+axios.defaults.headers.common["User-Agent"] =
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+
 /**
  * Constructs a hackerrank challenge url, which can be used to get hold of a list of exercises.
  *
@@ -9,9 +12,7 @@ const config = require("./config");
  * @param {*} numberOfResults
  */
 const createHackerrankUrl = (type, numberOfResults) => {
-  const url = `${
-    config.hackerrank.HACKERRANK_BASE_URL
-  }/${type}/challenges?offset=0&limit=${numberOfResults}`;
+  const url = `${config.hackerrank.HACKERRANK_BASE_URL}/${type}/challenges?offset=0&limit=${numberOfResults}`;
 
   debug(
     `Type: "${type}", numbersOfResults: "${numberOfResults}" - Results in created url: "${url}"`
