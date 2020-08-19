@@ -22,7 +22,7 @@ service: hackerrank-daily-serverless
 provider:
   name: aws
   runtime: nodejs10.x
-  profile: headcraft
+  profile: headcraft-mfa
 
   # you can overwrite defaults here
   #  stage: dev
